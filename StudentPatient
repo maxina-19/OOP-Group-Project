@@ -1,0 +1,15 @@
+public class StudentPatient extends Patient {
+    public StudentPatient(String name, int age, String contactInfo, String medicalHistory, String id) {
+        super(name, age, contactInfo, medicalHistory, id);
+    }
+
+    @Override
+    public String getPatientType() {
+        return "Student";
+    }
+    
+    @Override
+    public void register() {
+        System.out.println("Student " + getName() + " registered with student benefits.");
+    }
+}
