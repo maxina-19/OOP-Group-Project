@@ -1,13 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.mycompany.groupproject;
 
-/**
- *
- * @author user
- */
 import java.util.Date;
 
 public class MedicalRecord {
@@ -15,33 +7,38 @@ public class MedicalRecord {
     private String diagnosis;
     private String treatment;
     private Date date;
-    private String patientName;
+    private Patient patient;
 
-    public MedicalRecord(String recordID, String diagnosis, String treatment, Date date, String patientName) {
+    public MedicalRecord(String recordID, String diagnosis, String treatment, Date date, Patient patient) {
         this.recordID = recordID;
         this.diagnosis = diagnosis;
         this.treatment = treatment;
         this.date = date;
-        this.patientName = patientName;
+        this.patient = patient;
     }
 
-    public String getRecordID() {
-        return recordID;
+    // Method to update the medical record details
+    public void updateRecord(String data) {
+        if (data.startsWith("Diagnosis:")) {
+            this.diagnosis = data.substring(10);
+        } else if (data.startsWith("Treatment:")) {
+            this.treatment = data.substring(10);
+        }
     }
 
-    public String getDiagnosis() {
-        return diagnosis;
+    // Getters and Setters
+    public String getRecordID() { return recordID; }
+    public void setRecordID(String recordID) { this.recordID = recordID; }
+    public String getDiagnosis() { return diagnosis; }
+    public void setDiagnosis(String diagnosis) { this.diagnosis = diagnosis; }
+    public String getTreatment() { return treatment; }
+    public void setTreatment(String treatment) { this.treatment = treatment; }
+    public Date getDate() { return date; }
+    public void setDate(Date date) { this.date = date; }
+    public Patient getPatient() {
+        return patient;
     }
-
-    public String getTreatment() {
-        return treatment;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public String getPatientName() {
-        return patientName;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 }
