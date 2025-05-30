@@ -5,44 +5,76 @@
 package com.mycompany.groupproject;
 
 public class Prescription {
-    private int prescriptionID;
-    private String recordID;
-    private String instructions;
+    private String prescriptionID;
+    private Patient patient;
     private Doctor doctor;
-    private Medicine prescribedMedicine;
+    private Medicine medicine;
+    private String dosage;
+    private String instructions;
 
-    public Prescription(int prescriptionID, String recordID, String instructions, Doctor doctor) {
+    public Prescription(String prescriptionID, Patient patient, Doctor doctor, Medicine medicine, String dosage, String instructions) {
         this.prescriptionID = prescriptionID;
-        this.recordID = recordID;
-        this.instructions = instructions;
+        this.patient = patient;
         this.doctor = doctor;
+        this.medicine = medicine;
+        this.dosage = dosage;
+        this.instructions = instructions;
     }
 
-    public void issuePrescription() {
-        System.out.println("Prescription issued with ID: " + prescriptionID + " and instructions: " + instructions);
+    public String getPrescriptionID() {
+        return prescriptionID;
     }
 
-    public void setMedicine(Medicine medicine) {
-        this.prescribedMedicine = medicine;
-        System.out.println("Medicine prescribed: " + medicine.getName());
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setDosage(String dosage) {
-        // Set the dosage for the prescribed medicine
-        System.out.println("Dosage: " + dosage);
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void cancel() {
-        // Logic to cancel the prescription
-        System.out.println("Prescription ID " + prescriptionID + " has been canceled.");
+    public Medicine getMedicine() {
+        return medicine;
     }
 
-    // Getters and Setters
+    public String getDosage() {
+        return dosage;
+    }
+
     public String getInstructions() {
         return instructions;
     }
-    
-    public String getRecordID(){
-        return recordID;
+
+    public void setPrescriptionID(String prescriptionID) {
+        this.prescriptionID = prescriptionID;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
+    public void setMedicine(Medicine medicine) {
+        this.medicine = medicine;
+    }
+
+    public void setDosage(String dosage) {
+        this.dosage = dosage;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
+    public void printPrescription() {
+        System.out.println("Prescription ID: " + prescriptionID);
+        System.out.println("Patient: " + patient.getName());
+        System.out.println("Doctor: " + doctor.getName());
+        System.out.println("Medicine: " + medicine.getName());
+        System.out.println("Dosage: " + dosage);
+        System.out.println("Instructions: " + instructions);
     }
 }
