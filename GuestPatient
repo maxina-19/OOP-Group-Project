@@ -1,0 +1,15 @@
+public class GuestPatient extends Patient {
+    public GuestPatient(String name, int age, String contactInfo, String medicalHistory, String id) {
+        super(name, age, contactInfo, medicalHistory, id);
+    }
+
+    @Override
+    public String getPatientType() {
+        return "Guest";
+    }
+    
+    @Override
+    public void register() {
+        System.out.println("Guest " + getName() + " registered.");
+    }
+}
