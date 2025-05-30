@@ -1,24 +1,16 @@
-public class Person {
-    private String name;
-    private String email;
 
-    public Person(String name, String email) {
-        this.name = name;
-        this.email = email;
-    }
-    public String getName() {
-        return name;
+public class StaffPatient extends Patient {
+    public StaffPatient(String name, int age, String contactInfo, String medicalHistory, String id) {
+        super(name, age, contactInfo, medicalHistory, id);
     }
 
-    public String getEmail() {
-        return email;
+    @Override
+    public String getPatientType() {
+        return "Staff";
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    
+    @Override
+    public void register() {
+        System.out.println("Staff " + getName() + " registered with staff benefits.");
     }
 }
