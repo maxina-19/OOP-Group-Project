@@ -10,113 +10,62 @@ package com.mycompany.groupproject;
  */
 import java.util.ArrayList;
 
-public class Patient {
-    private String name;
+public class Patient extends Person {
     private int age;
-    private String contactInfo;
-    private String patientType;
+    private String occupation;
     private String medicalHistory;
-    private String id;
+    private String patientID;
     private MedicalRecord medicalRecord;
-    private ArrayList<Appointment> appointments;  // List to store appointments
-    private ArrayList<Prescription> prescriptions;  // List to store prescriptions
 
-    public Patient(String name, int age, String contactInfo, String patientType, String medicalHistory, String id) {
-        this.name = name;
+    public Patient(String name, int age, String email, String occupation, String medicalHistory, String patientID) {
+        super(name, email);
         this.age = age;
-        this.contactInfo = contactInfo;
-        this.patientType = patientType;
+        this.occupation = occupation;
         this.medicalHistory = medicalHistory;
-        this.id = id;
-        this.appointments = new ArrayList<>();
-        this.prescriptions = new ArrayList<>();
-    }
-
-    // Register the patient
-    public void register() {
-        System.out.println("Patient " + name + " registered.");
-    }
-
-    // Visit a doctor (consultation and treatment)
-    public void visitDoctor(Doctor doctor, MedicalRecord record) {
-        doctor.consult(this, record);
-        doctor.prescribe(this, record, "Treatment for condition X");
-    }
-
-    // Schedule an appointment
-    public void scheduleAppointment(Appointment appointment) {
-        appointments.add(appointment);
-        appointment.setPatient(this);
-        System.out.println("Appointment scheduled for " + this.name + " on " + appointment.getApptDate() + " at " + appointment.getApptTime());
-    }
-
-    // Receive a prescription
-    public void receivePrescription(Prescription prescription) {
-        prescriptions.add(prescription);
-        System.out.println("Prescription issued to " + this.name + ": " + prescription.getInstructions());
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.patientID = patientID;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getContactInfo() {
-        return contactInfo;
-    }
-
-    public void setContactInfo(String contactInfo) {
-        this.contactInfo = contactInfo;
-    }
-
-    public String getPatientType() {
-        return patientType;
-    }
-
-    public void setPatientType(String patientType) {
-        this.patientType = patientType;
+    public String getOccupation() {
+        return occupation;
     }
 
     public String getMedicalHistory() {
         return medicalHistory;
     }
 
-    public void setMedicalHistory(String medicalHistory) {
-        this.medicalHistory = medicalHistory;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public String getPatientID() {
+        return patientID;
     }
 
     public MedicalRecord getMedicalRecord() {
         return medicalRecord;
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
+
+    public void setMedicalHistory(String medicalHistory) {
+        this.medicalHistory = medicalHistory;
+    }
+
+    public void setPatientID(String patientID) {
+        this.patientID = patientID;
+    }
+
     public void setMedicalRecord(MedicalRecord medicalRecord) {
         this.medicalRecord = medicalRecord;
     }
 
-    public ArrayList<Appointment> getAppointments() {
-        return appointments;
-    }
-
-    public ArrayList<Prescription> getPrescriptions() {
-        return prescriptions;
+    public void visitDoctor(Doctor doctor, MedicalRecord record) {
+        System.out.println(getName() + " visited " + doctor.getName());
     }
 }
