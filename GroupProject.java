@@ -21,7 +21,6 @@ public class GroupProject {
         clinic.addDoctor(doctor);
 
         Patient patient = new Patient("Dina Lana", 30, "dinana@gmail.com", "Student", "None", "P001");
-
         receptionist.registerPatient(patient);
 
         Appointment appointment = receptionist.scheduleAppointment(patient, doctor, "2025-06-01", "10:15", "No. 7");
@@ -38,5 +37,8 @@ public class GroupProject {
 
         Payment payment = new Payment("PAY001", 75.00, new Date(), patient, "Credit");
         receptionist.processPayment(payment);
+
+        // Now cancel the appointment as a demonstration
+        receptionist.cancelAppointment(appointment);
     }
 }
