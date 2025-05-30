@@ -2,79 +2,45 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.groupproject;
-
 public class Prescription {
-    private String prescriptionID;
-    private Patient patient;
-    private Doctor doctor;
-    private Medicine medicine;
-    private String dosage;
+    private int prescriptionID;
+    private String recordID;
     private String instructions;
+    private Doctor doctor;
+    private Medicine prescribedMedicine;
 
-    public Prescription(String prescriptionID, Patient patient, Doctor doctor, Medicine medicine, String dosage, String instructions) {
+    public Prescription(int prescriptionID, String recordID, String instructions, Doctor doctor) {
         this.prescriptionID = prescriptionID;
-        this.patient = patient;
-        this.doctor = doctor;
-        this.medicine = medicine;
-        this.dosage = dosage;
+        this.recordID = recordID;
         this.instructions = instructions;
-    }
-
-    public String getPrescriptionID() {
-        return prescriptionID;
-    }
-
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public Medicine getMedicine() {
-        return medicine;
-    }
-
-    public String getDosage() {
-        return dosage;
-    }
-
-    public String getInstructions() {
-        return instructions;
-    }
-
-    public void setPrescriptionID(String prescriptionID) {
-        this.prescriptionID = prescriptionID;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
-
-    public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
+    }
+
+    public void issuePrescription() {
+        System.out.println("Prescription issued with ID: " + prescriptionID + " and instructions: " + instructions);
     }
 
     public void setMedicine(Medicine medicine) {
-        this.medicine = medicine;
+        this.prescribedMedicine = medicine;
+        System.out.println("Medicine prescribed: " + medicine.getName());
     }
 
     public void setDosage(String dosage) {
-        this.dosage = dosage;
-    }
-
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
-    }
-
-    public void printPrescription() {
-        System.out.println("Prescription ID: " + prescriptionID);
-        System.out.println("Patient: " + patient.getName());
-        System.out.println("Doctor: " + doctor.getName());
-        System.out.println("Medicine: " + medicine.getName());
+        // Set the dosage for the prescribed medicine
         System.out.println("Dosage: " + dosage);
-        System.out.println("Instructions: " + instructions);
+    }
+
+    public void cancel() {
+        // Logic to cancel the prescription
+        System.out.println("Prescription ID " + prescriptionID + " has been canceled.");
+    }
+
+    // Getters and Setters
+    public String getInstructions() {
+        return instructions;
+    }
+    
+    public String getRecordID(){
+        return recordID;
     }
 }
