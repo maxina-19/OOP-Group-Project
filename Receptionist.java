@@ -6,87 +6,56 @@ package com.mycompany.groupproject;
 
 /**
  *
+ 
  * @author user
  */
-
-public class Receptionist {
-    private String name;
+import java.util.ArrayList;
+import java.util.List;
+public class Receptionist extends Person {
     private String employeeID;
-    private String contactInfo;
-    private Clinic assignedClinic;
+    private Clinic clinic;
 
-    // Constructor
-    public Receptionist(String name, String employeeID, String contactInfo, Clinic assignedClinic) {
-        this.name = name;
+    public Receptionist(String name, String employeeID, String email, Clinic clinic) {
+        super(name, email);
         this.employeeID = employeeID;
-        this.contactInfo = contactInfo;
-        this.assignedClinic = assignedClinic;
-    }
-
-    // Register a new patient with the clinic
-    public void registerPatient(Patient patient) {
-        if (assignedClinic != null && patient != null) {
-            assignedClinic.registerPatient(patient);
-            System.out.println("Patient " + patient.getName() + " registered successfully.");
-        } else {
-            System.out.println("Error: Unable to register patient. Clinic or patient is null.");
-        }
-    }
-
-    // Schedule an appointment and return the created Appointment object
-    public Appointment scheduleAppointment(Patient patient, Doctor doctor, String date, String time, String room) {
-        if (assignedClinic != null && patient != null && doctor != null &&
-            date != null && time != null && room != null) {
-
-            Appointment appointment = doctor.createAppointment(date, time, room);
-            patient.scheduleAppointment(appointment);
-            System.out.println("Appointment scheduled for " + patient.getName() +
-                               " on " + date + " at " + time + " in room " + room);
-            return appointment;
-        } else {
-            System.out.println("Error: Missing required information to schedule appointment.");
-            return null;
-        }
-    }
-
-    public void processPayment(Payment payment) {
-    if (payment != null) {
-        payment.process();
-    } else {
-        System.out.println("Error: Payment is null.");
-    }
-}
-
-    // Getters and setters
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.clinic = clinic;
     }
 
     public String getEmployeeID() {
         return employeeID;
     }
 
+    public Clinic getClinic() {
+        return clinic;
+    }
+
     public void setEmployeeID(String employeeID) {
         this.employeeID = employeeID;
     }
 
-    public String getContactInfo() {
-        return contactInfo;
+    public void setClinic(Clinic clinic) {
+        this.clinic = clinic;
     }
 
-    public void setContactInfo(String contactInfo) {
-        this.contactInfo = contactInfo;
+    public void registerPatient(Patient patient) {
+        System.out.println("Registering patient: " + patient.getName());
+        clinic.addPatient(patient);
     }
 
-    public Clinic getAssignedClinic() {
-        return assignedClinic;
+    public Appointment scheduleAppointment(Patient patient, Doctor doctor, String date, String time, String room) {
+        Appointment appointment = new Appointment(patient, doctor, date, time, room);
+        clinic.addAppointment(appointment);
+        System.out.println("Appointment scheduled for " + patient.getName() + " with " + doctor.getName() + " on " + date + " at " + time);
+        return appointment;
     }
 
-    public void setAssignedClinic(Clinic assignedClinic) {
-        this.assignedClinic = assignedClinic;
+    public void cancelAppointment(Appointment appointment) {
+        appointment.cancel();
+        clinic.removeAppointment(appointment);
+    }
+
+    public void processPayment(Payment payment) {
+        System.out.println("Processing payment of " + payment.getAmount() + " from " + payment.getPatient().getName());
+        clinic.addPayment(payment);
     }
 }
