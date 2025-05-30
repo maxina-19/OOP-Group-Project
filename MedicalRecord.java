@@ -25,24 +25,23 @@ public class MedicalRecord {
         this.patientName = patientName;
     }
 
-    // Method to update the medical record details
-    public void updateRecord(String data) {
-        if (data.startsWith("Diagnosis:")) {
-            this.diagnosis = data.substring(10);
-        } else if (data.startsWith("Treatment:")) {
-            this.treatment = data.substring(10);
-        }
+    public String getRecordID() {
+        return recordID;
     }
 
-    // Getters and Setters
-    public String getRecordID() { return recordID; }
-    public void setRecordID(String recordID) { this.recordID = recordID; }
-    public String getDiagnosis() { return diagnosis; }
-    public void setDiagnosis(String diagnosis) { this.diagnosis = diagnosis; }
-    public String getTreatment() { return treatment; }
-    public void setTreatment(String treatment) { this.treatment = treatment; }
-    public Date getDate() { return date; }
-    public void setDate(Date date) { this.date = date; }
-    public String getPatientName() { return patientName; }
-    public void setPatientName(String patientName) { this.patientName = patientName; }
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+
+    public String getTreatment() {
+        return treatment;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
 }
