@@ -1,0 +1,67 @@
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+
+public class ClinicManagementApp extends Application {
+
+    private TextArea logArea = new TextArea();
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Clinic Management System");
+
+        // Controls
+        TextField patientNameField = new TextField();
+        patientNameField.setPromptText("Enter Patient Name");
+
+        Button registerBtn = new Button("Register Patient");
+        Button bookAppointmentBtn = new Button("Book Appointment");
+        Button consultBtn = new Button("Consult Patient");
+        Button issuePrescriptionBtn = new Button("Issue Prescription");
+        Button makePaymentBtn = new Button("Make Payment");
+
+        // Log area
+        logArea.setEditable(false);
+        logArea.setPrefHeight(200);
+
+        // Event Handlers
+        registerBtn.setOnAction(e -> {
+            String name = patientNameField.getText();
+            if (!name.isEmpty()) {
+                log("Registered Patient: " + name);
+            } else {
+                log("Please enter patient name.");
+            }
+        });
+
+        bookAppointmentBtn.setOnAction(e -> log("Appointment Booked."));
+        consultBtn.setOnAction(e -> log("Patient Consulted."));
+        issuePrescriptionBtn.setOnAction(e -> log("Prescription Issued."));
+        makePaymentBtn.setOnAction(e -> log("Payment Processed."));
+
+        // Layout
+        VBox layout = new VBox(10);
+        layout.setPadding(new Insets(20));
+        layout.getChildren().addAll(
+                new Label("Patient Name:"), patientNameField,
+                registerBtn, bookAppointmentBtn,
+                consultBtn, issuePrescriptionBtn,
+                makePaymentBtn, new Label("System Log:"), logArea
+        );
+
+        Scene scene = new Scene(layout, 400, 450);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private void log(String message) {
+        logArea.appendText(message + "\n");
+    }
+}
