@@ -16,7 +16,7 @@ public class Clinic {
 
     private List<Doctor> doctors;
     private List<Patient> patients;
-    private List<Appointment> appointments;
+    private ArrayList<Appointment> appointments;
     private List<MedicalRecord> medicalRecords;
     private List<Medicine> medicines;
     private List<Payment> payments;
@@ -32,7 +32,9 @@ public class Clinic {
         medicines = new ArrayList<>();
         payments = new ArrayList<>();
     }
-
+    public ArrayList<Appointment> getAppointments() {
+        return appointments;
+    }
     public void addDoctor(Doctor doctor) {
         doctors.add(doctor);
     }
