@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
+-->
+
+
+<!-- BookingScreen.fxml -->
+<VBox spacing="10" alignment="CENTER" fx:controller="controller.BookingController"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <Label text="Choose Doctor" />
+    <ComboBox fx:id="doctorComboBox" />
+    <Label text="Choose Date" />
+    <DatePicker fx:id="datePicker" />
+    <Label text="Time" />
+    <TextField fx:id="timeField" />
+    <Label text="Room" />
+    <TextField fx:id="roomField" />
+    <Button text="Book Appointment" onAction="#handleBooking" />
+    <Label fx:id="statusLabel" />
+</VBox>
