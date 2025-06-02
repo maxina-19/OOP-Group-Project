@@ -1,0 +1,39 @@
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+import com.mycompany.groupproject.Patient;
+import util.ClinicContext;
+
+/**
+ *
+ * @author user
+ */
+
+public class LoginController {
+    @FXML private TextField patientIdField;
+    @FXML private Label errorLabel;
+
+    @FXML
+    public void handleLogin() throws IOException {
+        String inputId = patientIdField.getText();
+        for (Patient p : ClinicContext.clinic.getPatients()) {
+            if (p.getId().equals(inputId)) {
+                ClinicContext.loggedInPatient = p;
+
+                // Switch to booking screen
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BookingScreen.fxml"));
+                Stage stage = (Stage) patientIdField.getScene().getWindow();
+                stage.setScene(new Scene(loader.load()));
+                return;
+            }
+        }
+        errorLabel.setText("Invalid Patient ID.");
+    }
+}
