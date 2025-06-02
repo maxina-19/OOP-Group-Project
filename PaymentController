@@ -1,0 +1,51 @@
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+import com.mycompany.groupproject.Payment;
+import com.mycompany.groupproject.Patient;
+import util.ClinicContext;
+
+import java.io.IOException;
+import java.util.Date;
+
+public class PaymentController {
+    @FXML private TextField amountField;
+    @FXML private ComboBox<String> methodComboBox;
+    @FXML private Label paymentStatusLabel;
+
+    @FXML
+    public void initialize() {
+        methodComboBox.getItems().addAll("Cash", "Credit", "Insurance");
+    }
+
+    @FXML
+    public void handlePayment() throws IOException {
+        String amountText = amountField.getText();
+        String method = methodComboBox.getValue();
+
+        if (amountText.isEmpty() || method == null) {
+            paymentStatusLabel.setText("Please enter all fields.");
+            return;
+        }
+
+        try {
+            double amount = Double.parseDouble(amountText);
+            Patient patient = ClinicContext.loggedInPatient;
+
+            Payment payment = new Payment("PAY" + System.currentTimeMillis(), amount, new Date(), patient, method);
+            ClinicContext.receptionist.processPayment(payment);
+
+            // Navigate to E-Slip
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ESlipScreen.fxml"));
+            Stage stage = (Stage) amountField.getScene().getWindow();
+            stage.setScene(new Scene(loader.load()));
+
+        } catch (NumberFormatException e) {
+            paymentStatusLabel.setText("Invalid amount entered.");
+        }
+    }
+}
