@@ -26,14 +26,6 @@ public class Doctor {
         System.out.println("Prescribed treatment: " + treatment + " to " + patient.getName());
     }
 
-    // Create an appointment for a patient
-    public Appointment createAppointment(String apptDate, String apptTime, String room) {
-        Appointment appointment = new Appointment(apptDate, apptTime, room);
-        appointment.setDoctor(this);
-        System.out.println("Created appointment for " + apptDate + " at " + apptTime);
-        return appointment;
-    }
-
     public String getName() {
         return name;
     }
