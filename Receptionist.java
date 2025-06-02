@@ -25,19 +25,23 @@ public class Receptionist {
 
     // Schedule an appointment and return the created Appointment object
     public Appointment scheduleAppointment(Patient patient, Doctor doctor, String date, String time, String room) {
-        if (assignedClinic != null && patient != null && doctor != null &&
-            date != null && time != null && room != null) {
+    if (assignedClinic != null && patient != null && doctor != null &&
+        date != null && time != null && room != null) {
 
-            Appointment appointment = doctor.createAppointment(date, time, room);
-            patient.scheduleAppointment(appointment);
-            System.out.println("Appointment scheduled for " + patient.getName() +
-                               " on " + date + " at " + time + " in room " + room);
-            return appointment;
-        } else {
-            System.out.println("Error: Missing required information to schedule appointment.");
-            return null;
-        }
+        Appointment appointment = new Appointment(date, time, room);
+        appointment.setDoctor(doctor);
+        appointment.setPatient(patient);
+        
+        patient.scheduleAppointment(appointment); // adds to patient’s record
+
+        System.out.println("Appointment scheduled for " + patient.getName() +
+                           " on " + date + " at " + time + " in room " + room);
+        return appointment;
+    } else {
+        System.out.println("Error: Missing required information to schedule appointment.");
+        return null;
     }
+}
 
     public void processPayment(Payment payment) {
     if (payment != null) {
@@ -80,3 +84,4 @@ public class Receptionist {
         this.assignedClinic = assignedClinic;
     }
 }
+
