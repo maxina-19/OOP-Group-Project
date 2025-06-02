@@ -1,0 +1,43 @@
+
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import com.mycompany.groupproject.Appointment;
+import com.mycompany.groupproject.Patient;
+import util.ClinicContext;
+
+import java.io.IOException;
+
+public class ESlipController {
+
+    @FXML private Label patientLabel;
+    @FXML private Label doctorLabel;
+    @FXML private Label dateLabel;
+    @FXML private Label timeLabel;
+    @FXML private Label roomLabel;
+
+    @FXML
+    public void initialize() {
+        Patient patient = ClinicContext.loggedInPatient;
+        if (patient != null && !patient.getAppointments().isEmpty()) {
+            Appointment appointment = patient.getAppointments()
+                                             .get(patient.getAppointments().size() - 1);
+
+            patientLabel.setText("Patient: " + patient.getName());
+            doctorLabel.setText("Doctor: " + appointment.getDoctor().getName());
+            dateLabel.setText("Date: " + appointment.getApptDate());
+            timeLabel.setText("Time: " + appointment.getApptTime());
+            roomLabel.setText("Room: " + appointment.getRoom());
+        }
+    }
+
+    @FXML
+    public void goToLogin() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginScreen.fxml"));
+        Stage stage = (Stage) patientLabel.getScene().getWindow();
+        stage.setScene(new Scene(loader.load()));
+    }
+}
