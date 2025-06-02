@@ -28,7 +28,7 @@ public class GroupProject {
 
         aspirin.dispense(10);
 
-        Payment payment = new Payment("PAY001", 75.00, new Date(), patient, "Credit");
-        receptionist.processPayment(payment);
+  //      Payment payment = new Payment("PAY001", 75.00, new Date(), patient, "Credit");
+    //    receptionist.processPayment(payment);
     }
 }
