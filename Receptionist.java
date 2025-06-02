@@ -1,4 +1,5 @@
 /*
+
 public class Receptionist {
     private String name;
     private String employeeID;
@@ -84,4 +85,3 @@ public class Receptionist {
         this.assignedClinic = assignedClinic;
     }
 }
-
