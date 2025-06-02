@@ -1,0 +1,10 @@
+
+import com.mycompany.groupproject.Clinic;
+import com.mycompany.groupproject.Receptionist;
+import com.mycompany.groupproject.Patient;
+
+public class ClinicContext {
+    public static Clinic clinic;
+    public static Receptionist receptionist;
+    public static Patient loggedInPatient;
+}
