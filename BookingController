@@ -1,0 +1,52 @@
+package com.mycompany.groupproject;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+import com.mycompany.groupproject.Appointment;
+import com.mycompany.groupproject.Doctor;
+import com.mycompany.groupproject.Patient;
+
+// Shared application context
+import util.ClinicContext;
+
+/**
+ *
+ * @author user
+ */
+public class BookingController {
+    @FXML private ComboBox<Doctor> doctorComboBox;
+    @FXML private DatePicker datePicker;
+    @FXML private TextField timeField;
+    @FXML private TextField roomField;
+    @FXML private Label statusLabel;
+
+    @FXML
+    public void initialize() {
+        doctorComboBox.getItems().addAll(ClinicContext.clinic.getDoctors());
+    }
+
+    @FXML
+    public void handleBooking() throws IOException {
+        Doctor doctor = doctorComboBox.getValue();
+        String date = datePicker.getValue().toString();
+        String time = timeField.getText();
+        String room = roomField.getText();
+
+        Appointment appointment = ClinicContext.receptionist.scheduleAppointment(
+            ClinicContext.loggedInPatient, doctor, date, time, room);
+
+        // Proceed to Payment screen
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PaymentScreen.fxml"));
+        Stage stage = (Stage) doctorComboBox.getScene().getWindow();
+        stage.setScene(new Scene(loader.load()));
+    }
+}
