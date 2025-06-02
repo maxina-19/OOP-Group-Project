@@ -9,12 +9,12 @@ public class Payment {
     private String method; // e.g., Cash, Credit, Insurance
 
     // Constructor
-    public Payment(String paymentID, double amount, Date date, Patient patient, String method) {
-        this.paymentID = paymentID;
-        this.amount = amount;
-        this.date = date;
-        this.patient = patient;
-        this.method = method;
+    public Payment(double amount, Patient patient, String method) {
+    this.paymentID = "PAY" + System.currentTimeMillis();
+    this.amount = amount;
+    this.date = new Date();
+    this.patient = patient;
+    this.method = method;
     }
 
     // Process the payment (placeholder logic)
