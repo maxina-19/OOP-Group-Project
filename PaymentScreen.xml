@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
+-->
+
+
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml" fx:controller="controller.PaymentController">
+    <Label text="Payment Details" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+    
+    <Label text="Amount (RM):" />
+    <TextField fx:id="amountField" />
+    
+    <Label text="Payment Method:" />
+    <ComboBox fx:id="methodComboBox" />
+    
+    <Button text="Confirm Payment" onAction="#handlePayment" />
+    
+    <Label fx:id="paymentStatusLabel" textFill="green" />
+</VBox>
