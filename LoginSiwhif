@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
+-->
+
+<!-- LoginScreen.fxml -->
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.LoginController">
+    <Label text="Enter Patient ID" />
+    <TextField fx:id="patientIdField"/>
+    <Button text="Login" onAction="#handleLogin"/>
+    <Label fx:id="errorLabel" textFill="red"/>
+</VBox>
+
